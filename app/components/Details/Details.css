@@ -1,0 +1,15 @@
+.details {
+    display: flex;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.details > *::after {
+    content: "";
+    border-right: 1px solid;
+    margin: 0 5px;
+}
+
+.details > *:last-child::after {
+    border: none;
+}

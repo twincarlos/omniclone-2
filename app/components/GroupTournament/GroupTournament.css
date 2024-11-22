@@ -1,0 +1,9 @@
+.group-tournament {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.group-tournament-name {
+    font-weight: bold;
+}
