@@ -1,0 +1,4 @@
+.player-lookup .list-container {
+    height: 90%;
+    overflow-y: scroll;
+}

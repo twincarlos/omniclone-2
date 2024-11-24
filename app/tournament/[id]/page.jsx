@@ -14,11 +14,26 @@ export default function Tournament() {
     const [activeTab, setActiveTab] = useState("Players");
     const [playersKeyword, setPlayersKeyword] = useState("");
     const [eventsKeyword, setEventsKeyword] = useState("");
+
     async function fetchTournament() {
         const res = await fetch(`https://omniclone-api.vercel.app/api/omnipong/tournament/${id}`);
         const data = await res.json();
         setTournament(data);
     };
+
+    function renderEvent(event, idx) {
+        const filteredPlayers = playersKeyword ? event.players.filter(player => player.name.toLowerCase().includes(playersKeyword.toLowerCase())) : event.players;
+        if (filteredPlayers.length > 0) {
+            return (
+                <Card key={idx}>
+                    <Section indexed={true} header={event.name} items={filteredPlayers.map((player, idx) => <Player key={idx} player={player} />)} />
+                </Card>
+            );
+        } else {
+            return null;
+        };
+    };
+
     useEffect(() => {
         fetchTournament();
     }, []);
@@ -33,14 +48,16 @@ export default function Tournament() {
             <div className="margin-top-bottom">
                 <Tabs tabs={[
                     {
-                        name: "Players", onClickFunction: () => {
+                        name: "Players",
+                        onClickFunction: () => {
                             setActiveTab("Players");
                             setPlayersKeyword("");
                             setEventsKeyword("");
                         }
                     },
                     {
-                        name: "Events", onClickFunction: () => {
+                        name: "Events",
+                        onClickFunction: () => {
                             setActiveTab("Events");
                             setPlayersKeyword("");
                             setEventsKeyword("");
@@ -53,7 +70,19 @@ export default function Tournament() {
                 <div>
                     <input className="search-bar" type="text" placeholder="Search players" value={playersKeyword} onChange={e => setPlayersKeyword(e.target.value)} />
                     <List indexed={true}>
-                        {playersKeyword ? tournament.players.filter(player => player.name.toLowerCase().includes(playersKeyword.toLowerCase())).map((player, idx) => <Player key={idx} player={player} />) : tournament.players.map((player, idx) => <Player key={idx} player={player} />)}
+                        {
+                            tournament.players.map((player, idx) => {
+                                if (playersKeyword) {
+                                    if (player.name.toLowerCase().includes(playersKeyword.toLowerCase())) {
+                                        return <Player key={idx} player={player} />;
+                                    } else {
+                                        return null;
+                                    };
+                                } else {
+                                    return <Player key={idx} player={player} />;
+                                };
+                            }).filter(Boolean)
+                        }
                     </List>
                 </div>
             }
@@ -66,17 +95,17 @@ export default function Tournament() {
                     </div>
                     <Gallery>
                         {
-                            eventsKeyword ?
-                            tournament.events.filter(event => event.name.toLowerCase().includes(eventsKeyword.toLowerCase())).map((event, idx) => (
-                                <Card key={idx}>
-                                    <Section indexed={true} header={event.name} items={playersKeyword ? event.players.filter(player => player.name.toLowerCase().includes(playersKeyword.toLowerCase())).map((player, idx) => <Player key={idx} player={player} />) : event.players.map((player, idx) => <Player key={idx} player={player} />)} />
-                                </Card>
-                            )) :
-                            tournament.events.map((event, idx) => (
-                                <Card key={idx}>
-                                    <Section indexed={true} header={event.name} items={playersKeyword ? event.players.filter(player => player.name.toLowerCase().includes(playersKeyword.toLowerCase())).map((player, idx) => <Player key={idx} player={player} />) : event.players.map((player, idx) => <Player key={idx} player={player} />)} />
-                                </Card>
-                            ))
+                            tournament.events.map((event, idx) => {
+                                if (eventsKeyword) {
+                                    if (event.name.toLowerCase().includes(eventsKeyword.toLowerCase())) {
+                                        return renderEvent(event, idx);
+                                    } else {
+                                        return null;
+                                    };
+                                } else {
+                                    return renderEvent(event, idx);
+                                };
+                            })
                         }
                     </Gallery>
                 </div>
