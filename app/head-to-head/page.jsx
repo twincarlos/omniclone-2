@@ -2,11 +2,10 @@
 import "./HeadToHead.css";
 import { useState } from "react";
 import Card from "../components/Card/Card";
-import List from "../components/List/List";
+import Match from "../components/Match/Match";
 import Gallery from "../components/Gallery/Gallery";
 import Player from "../components/Player/Player";
 import { useModal } from "../context/ModalContext";
-import Details from "../components/Details/Details";
 import PlayerLookup from "../components/PlayerLookup/PlayerLookup";
 
 export default function HeadToHead() {
@@ -62,37 +61,7 @@ export default function HeadToHead() {
                         {
                             headToHeadData.matches.map((match, idx) => (
                                 <Card key={idx}>
-                                    <div className="match">
-                                        <Details
-                                            details={[
-                                                match.tournamentName,
-                                                match.eventName,
-                                                match.tournamentDate
-                                            ]}
-                                        />
-                                        <div className="match-body">
-                                            <div className="match-player match-winner">
-                                                <span className="margin-top-bottom match-player-name"><i className="fa-solid fa-trophy" /> {match.winner.name}</span>
-                                                <div className="match-scores">
-                                                    {
-                                                        match.winner.scores.map((score, idx) => (
-                                                            <span className="match-score" key={idx}>{score}</span>
-                                                        ))
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div className="match-player match-loser">
-                                                <div className="match-scores">
-                                                    {
-                                                        match.loser.scores.map((score, idx) => (
-                                                            <span className="match-score" key={idx}>{score}</span>
-                                                        ))
-                                                    }
-                                                </div>
-                                                <span className="margin-top-bottom match-player-name">{match.loser.name}</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Match  match={match} />
                                 </Card>
                             ))
                         }

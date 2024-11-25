@@ -1,0 +1,45 @@
+.match-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.match-scores {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.match-score {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.123);
+}
+
+.match-loser .match-player-name {
+    opacity: .4;
+}
+
+.match-score {
+    background-color: #3554c4b4;
+}
+
+.match-score.winner-score {
+    font-weight: bold;
+}
+
+.match-score.loser-score {
+    opacity: .25;
+}
