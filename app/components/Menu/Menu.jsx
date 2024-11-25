@@ -1,24 +1,30 @@
 "use client";
 import "./Menu.css";
-import { useModal } from "@/app/context/ModalContext";
-import { usePlayer } from "@/app/context/PlayerContext";
-import PlayerLookup from "../PlayerLookup/PlayerLookup";
+import PlayerWidget from "../PlayerWidget/PlayerWidget";
+import { useState } from "react";
+import Link from "next/link";
+import List from "../List/List";
 
 export default function Menu() {
-    const { setContent } = useModal();
-    const { savePlayerId } = usePlayer();
+    const [showMenu, setShowMenu] = useState(false);
     return (
-        <main className="menu">
+        <main className="menu margin-x2">
             <div className="menu-details">
-                <button onClick={() => {
-                    setContent(<PlayerLookup onClick={player => savePlayerId(player.id)} />);
-                }}>
-                    <i className="fa-solid fa-link" /> Sync USATT
-                </button>
+                <PlayerWidget />
             </div>
-            <button>
-                <i className="fa-solid fa-bars" />
-            </button>
+            <div className="menu-dropdown">
+                <button className="show-menu-button" onClick={() => setShowMenu(!showMenu)}>
+                    <i className="fa-solid fa-bars" />
+                </button>
+                {
+                    showMenu && (
+                        <List>
+                            <Link onClick={() => setShowMenu(false)} className="padding" href="/rating-calculator">Rating calculator <i className="fa-solid fa-square-root-variable" /></Link>
+                            <Link onClick={() => setShowMenu(false)} className="padding" href="/head-to-head">Head to head <i className="fa-solid fa-scale-unbalanced-flip" /></Link>
+                        </List>
+                    )
+                }
+            </div>
         </main >
     );
 };

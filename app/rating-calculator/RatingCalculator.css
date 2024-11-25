@@ -1,0 +1,9 @@
+.rating-calculator-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rating-calculator-modal .player-lookup .list-container {
+    max-height: 300px;
+}

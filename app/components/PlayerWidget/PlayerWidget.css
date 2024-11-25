@@ -1,0 +1,42 @@
+.player-widget {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.player-widget-img {
+    width: 50px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.player-widget-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.player-widget-rating {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-widget-current-rating {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.went-down {
+    color: red;
+    font-weight: bold;
+}
+
+.player-widget-previous-tournament {
+    display: flex;
+    flex-direction: column;
+    opacity: .5;
+}

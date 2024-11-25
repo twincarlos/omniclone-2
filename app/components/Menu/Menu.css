@@ -1,6 +1,33 @@
 .menu {
+    background: linear-gradient(to bottom,#040d2e, 70%,transparent);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     gap: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.show-menu-button {
+    font-size: 20px;
+}
+
+.menu-dropdown {
+    position: relative;
+}
+
+.menu-dropdown .list-container {
+    position: absolute;
+    right: 0;
+    width: 200px;
+    text-align: right;
+    box-shadow: #1c3bb1 1px 1px 100px;
+    border-radius: 5px;
+    border: 1px solid #1c3bb1;
+}
+
+.menu-dropdown .list-item a {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 10px;
 }

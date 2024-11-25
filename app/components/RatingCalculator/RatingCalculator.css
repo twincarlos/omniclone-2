@@ -1,0 +1,27 @@
+.rating-calculator .list-container {
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.rating-calculator-buttons {
+    gap: 5px;
+    display: flex;
+}
+
+.match-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-result button.inactive {
+    opacity: .25;
+}
+
+.win {
+    border: 2px solid green;
+}
+
+.loss {
+    border: 2px solid red;
+}
