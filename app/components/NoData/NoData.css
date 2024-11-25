@@ -1,0 +1,13 @@
+.no-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: .5;
+    height: 100%;
+}
+
+.no-data i {
+    font-size: 50px;
+}

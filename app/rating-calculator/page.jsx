@@ -11,7 +11,7 @@ export default function RatingCalculatorHome() {
     const { addMatchResult } = useRatingCalculator();
     return (
         <main>
-            <button className="margin-top-bottom" onClick={() => {
+            <button className="primary margin-top-bottom" onClick={() => {
                 setContent(
                     <PlayerLookup onClick={player => {
                         addMatchResult({ name: player.name, rating: player.rating });

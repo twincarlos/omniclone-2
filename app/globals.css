@@ -113,3 +113,10 @@ label {
 input[type="checkbox"] {
   width: auto;
 }
+
+input {
+  background: #040d2e;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}

@@ -80,6 +80,7 @@ export default function Tournament() {
                 <Tabs tabs={[
                     {
                         name: "Players",
+                        activeTab: activeTab,
                         onClickFunction: () => {
                             setActiveTab("Players");
                             setPlayersKeyword("");
@@ -88,6 +89,7 @@ export default function Tournament() {
                     },
                     {
                         name: "Events",
+                        activeTab: activeTab,
                         onClickFunction: () => {
                             setActiveTab("Events");
                             setPlayersKeyword("");
