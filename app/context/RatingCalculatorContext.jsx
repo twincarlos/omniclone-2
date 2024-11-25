@@ -1,17 +1,28 @@
 "use client";
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const RatingCalculatorContext = createContext();
 
 const RatingCalculatorProvider = ({ children }) => {
-    const savedPlayer = localStorage.getItem("player");
-    const savedMatchResults = localStorage.getItem("matchResults");
-    const savedRating = localStorage.getItem("myRating");
-    const [matchResults, setMatchResults] = useState(savedMatchResults ? JSON.parse(savedMatchResults) : {});
-    const [myRating, setMyRating] = useState(savedRating ? JSON.parse(savedRating) : ({
-        preTournamentRating: savedPlayer ? JSON.parse(savedPlayer.rating) : 0,
+    const [matchResults, setMatchResults] = useState({});
+    const [myRating, setMyRating] = useState({
+        preTournamentRating: 0,
         postTournamentRating: 0
-    }));
+    });
+
+    useEffect(() => {
+        const savedPlayer = localStorage.getItem("player");
+        const savedRating = localStorage.getItem("myRating");
+        const savedMatchResults = localStorage.getItem("matchResults");
+
+        if (savedRating) setMyRating(JSON.parse(savedRating));
+        if (savedMatchResults) setMatchResults(JSON.parse(savedMatchResults));
+        else if (savedPlayer) setMyRating({
+            preTournamentRating: JSON.parse(savedPlayer.rating),
+            postTournamentRating: JSON.parse(savedPlayer.rating)
+        });
+    }, []);
+
     function determinePointWinLoss(myRating, playerRating, outcome) {
         const pointsDifference = Math.abs((myRating || 0) - playerRating);
         if (outcome === "W") {

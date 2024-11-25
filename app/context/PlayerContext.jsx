@@ -1,11 +1,16 @@
 "use client";
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const PlayerContext = createContext();
 
 const PlayerProvider = ({ children }) => {
-    const savedPlayerId = localStorage.getItem("playerId");
-    const [playerId, setPlayerId] = useState(savedPlayerId);
+    const [playerId, setPlayerId] = useState(null);
+
+    useEffect(() => {
+        const savedPlayerId = localStorage.getItem("playerId");
+        if (savePlayerId) setPlayerId(JSON.parse(savedPlayerId));
+    }, []);
+
     function savePlayerId(newPlayerId) {
         localStorage.setItem("playerId", JSON.stringify(newPlayerId));
         setPlayerId(newPlayerId);

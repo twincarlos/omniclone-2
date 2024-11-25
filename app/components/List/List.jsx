@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import "./List.css";
+import { useState } from "react";
 
 export default function List({ children, max, indexed }) {
     const [viewMore, setViewMore] = useState(false);
