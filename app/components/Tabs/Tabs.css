@@ -10,5 +10,5 @@
 .tab.active {
     font-size: 16px;
     padding: 10px;
-    background-color: #1046aa;
+    background-color: var(--primary-button-background);
 }

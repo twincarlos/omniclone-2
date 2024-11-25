@@ -1,16 +1,32 @@
 :root {
-  --background: linear-gradient(#153470,#040d2e);
-  --foreground: #171717;
-  --list-odd-background: #040d2e;
-  --list-even-background: #153470;
+  --background: linear-gradient(#153470, #040d2e);
+  --foreground: #ededed;
+  --list-odd-background: #0a153d;
+  --list-even-background: #051f50;
+  --gradient-border-color: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(#153470,#040d2e);
+    --background: linear-gradient(#153470, #040d2e);
     --foreground: #ededed;
+    
     --list-odd-background: #0a153d;
     --list-even-background: #051f50;
+
+    --border-color: #103886;
+    --gradient-border-color: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
+
+    --input-background: #132566;
+    
+    --primary-button-background: #1466ff;
+    --primary-button-color: #ededed;
+    --secondary-button-background: #ededed;
+    --secondary-button-color: #051f50;
+
+    --gradient-background: linear-gradient(to right, #0a184d, #040d2e);
+
+    --box-shadow: #1c3bb1 1px 1px 100px;
   }
 }
 
@@ -55,6 +71,7 @@ main {
 .padding {
   padding: 5px;
 }
+
 .padding-x2 {
   padding: 10px;
 }
@@ -62,6 +79,7 @@ main {
 .margin {
   margin: 5px;
 }
+
 .margin-x2 {
   margin: 10px;
 }
@@ -78,16 +96,18 @@ button {
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
+  color: var(--foreground);
   background-color: transparent;
 }
 
 button.primary {
-  background: #1c50af;
+  background: var(--primary-button-background);
+  color: var(--primary-button-color);
 }
 
 button.secondary {
-  background: #115fee;
-  color: white;
+  background: var(--secondary-button-background);
+  color: var(--secondary-button-color);
 }
 
 .search-bar {
@@ -95,9 +115,8 @@ button.secondary {
   margin-bottom: 10px;
   height: 40px;
   padding: 10px;
-  background: #0a153d;
   border-radius: 5px;
-  border-image: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
+  border-image: var(--gradient-border-color);
   border-style: solid;
   width: 100%;
 }
@@ -115,7 +134,7 @@ input[type="checkbox"] {
 }
 
 input {
-  background: #040d2e;
+  background: var(--input-background);
   border: none;
   padding: 10px;
   border-radius: 5px;

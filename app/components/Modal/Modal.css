@@ -18,7 +18,8 @@
     max-width: 500px;
     height: 500px;
     border-radius: 5px;
-    background: linear-gradient(#6485c4, #203480);
+    border: 3px solid var(--border-color);
+    background: var(--gradient-background);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

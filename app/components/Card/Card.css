@@ -2,6 +2,6 @@
     padding: 5px;
     background-color: #040d2e63;
     border-radius: 5px;
-    border-image: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
+    border-image: var(--gradient-border-color);
     border-style: solid;
 }
