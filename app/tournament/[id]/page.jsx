@@ -36,8 +36,8 @@ export default function Tournament() {
             return (
                 <Card key={idx}>
                     <Section indexed={true} max={10} header={event.name} buttons={[
-                        <button onClick={() => setContent(<Groups players={event.players} />)}>Groups</button>,
-                        <button onClick={() => setContent(<Draw players={event.players} />)}>Draw</button>
+                        <button key={1} onClick={() => setContent(<Groups players={event.players} />)}>Groups</button>,
+                        <button key={2} onClick={() => setContent(<Draw players={event.players} />)}>Draw</button>
                     ]} items={filteredPlayers.map((player, idx) => (
                         <div key={idx} className="rating-calculator-player">
                             <Player player={player} />
