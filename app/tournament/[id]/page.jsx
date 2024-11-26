@@ -5,7 +5,10 @@ import { useParams } from "next/navigation";
 import Tabs from "@/app/components/Tabs/Tabs";
 import Card from "@/app/components/Card/Card";
 import List from "@/app/components/List/List";
+import Draw from "@/app/components/Draw/Draw";
 import Player from "@/app/components/Player/Player";
+import Groups from "@/app/components/Groups/Groups";
+import { useModal } from "@/app/context/ModalContext";
 import Gallery from "@/app/components/Gallery/Gallery";
 import Section from "@/app/components/Section/Section";
 import { useRatingCalculator } from "@/app/context/RatingCalculatorContext";
@@ -13,12 +16,13 @@ import RatingCalculatorWidget from "@/app/components/RatingCalculatorWidget/Rati
 
 export default function Tournament() {
     const { id } = useParams();
+    const { setContent } = useModal();
+    const { addMatchResult } = useRatingCalculator();
     const [tournament, setTournament] = useState(null);
     const [activeTab, setActiveTab] = useState("Players");
-    const [playersKeyword, setPlayersKeyword] = useState("");
     const [eventsKeyword, setEventsKeyword] = useState("");
+    const [playersKeyword, setPlayersKeyword] = useState("");
     const [enableRatingCalculator, setEnableRatingCalculator] = useState(false);
-    const { addMatchResult } = useRatingCalculator();
 
     async function fetchTournament() {
         const res = await fetch(`https://omniclone-api.vercel.app/api/omnipong/tournament/${id}`);
@@ -31,7 +35,10 @@ export default function Tournament() {
         if (filteredPlayers.length > 0) {
             return (
                 <Card key={idx}>
-                    <Section indexed={true} max={10} header={event.name} items={filteredPlayers.map((player, idx) => (
+                    <Section indexed={true} max={10} header={event.name} buttons={[
+                        <button onClick={() => setContent(<Groups players={event.players} />)}>Groups</button>,
+                        <button onClick={() => setContent(<Draw players={event.players} />)}>Draw</button>
+                    ]} items={filteredPlayers.map((player, idx) => (
                         <div key={idx} className="rating-calculator-player">
                             <Player player={player} />
                             {renderRatingCalculatorButtons(player)}

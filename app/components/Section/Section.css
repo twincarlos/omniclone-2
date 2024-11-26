@@ -1,4 +1,11 @@
 .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 16px;
     margin-bottom: 5px;
+}
+
+.section-header-buttons {
+    display: flex;
 }
