@@ -81,9 +81,9 @@ export default function Tournament() {
 
     return (
         <main>
-            <div>
+            <h1>
                 {tournament.name}
-            </div>
+            </h1>
             <div className="margin-top-bottom">
                 <Tabs tabs={[
                     {
