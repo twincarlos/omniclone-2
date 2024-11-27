@@ -44,6 +44,7 @@ export default function Groups({ players }) {
                     <Card key={idx}>
                         <Section
                             header={`Group ${idx + 1}`}
+                            indexed={true}
                             items={group.map((player, idx) => <Player key={idx} player={player} />)}
                         />
                     </Card>
