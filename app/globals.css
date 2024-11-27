@@ -1,15 +1,15 @@
 :root {
   --background: linear-gradient(#153470, #040d2e);
   --foreground: #e4e1da;
-  
-  --list-odd-background: #051f50;
-  --list-even-background: #0a153d;
+
+  --list-odd-background: #0a153d;
+  --list-even-background: #051f50;
 
   --border-color: #103886;
   --gradient-border-color: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
 
   --input-background: #132566;
-  
+
   --primary-button-background: #1466ff;
   --primary-button-color: #e4e1da;
   --secondary-button-background: #e4e1da;
@@ -24,15 +24,15 @@
   :root {
     --background: linear-gradient(#153470, #040d2e);
     --foreground: #e4e1da;
-    
-    --list-odd-background: #051f50;
-    --list-even-background: #0a153d;
+
+    --list-odd-background: #0a153d;
+    --list-even-background: #051f50;
 
     --border-color: #103886;
     --gradient-border-color: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
 
     --input-background: #132566;
-    
+
     --primary-button-background: #1466ff;
     --primary-button-color: #e4e1da;
     --secondary-button-background: #e4e1da;
