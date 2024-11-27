@@ -36,7 +36,7 @@ export default function Tournament() {
         if (filteredPlayers.length > 0) {
             return (
                 <Card key={idx}>
-                    <Section indexed={true} max={10} header={event.name} buttons={[
+                    <Section indexed={true} max={10} header={event.name} buttons={event.players.length >= 6 && [
                         <button key={1} onClick={() => setContent(<Groups players={event.players} />)}>Groups</button>,
                         <button key={2} onClick={() => setContent(<Draw players={event.players} />)}>Draw</button>
                     ]} items={filteredPlayers.map((player, idx) => (
