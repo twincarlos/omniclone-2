@@ -5,6 +5,7 @@ import Logo from "./components/Logo/Logo";
 import Menu from "./components/Menu/Menu";
 import Modal from "./components/Modal/Modal";
 import ModalProvider from "./context/ModalContext";
+import { Analytics } from "@vercel/analytics/react";
 import PlayerProvider from "./context/PlayerContext";
 import RatingCalculatorProvider from "./context/RatingCalculatorContext";
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
               <Logo />
               <Menu />
               {children}
+              <Analytics />
             </RatingCalculatorProvider>
           </ModalProvider>
         </PlayerProvider>
