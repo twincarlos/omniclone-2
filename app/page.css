@@ -1,0 +1,21 @@
+.tournament {
+    position: relative;
+}
+
+.tournament button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: .75;
+    font-size: 12px;
+}
+
+.favorite-tournament {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.favorite-tournaments {
+    
+}

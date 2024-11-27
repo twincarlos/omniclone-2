@@ -14,7 +14,7 @@ export default function PlayerWidget() {
 
     async function fetchPlayer() {
         if (playerId) {
-            const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-profile/${playerId}`);
+            const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-profile/${playerId}/test`);
             const data = await res.json();
             setPlayer(data);
         };

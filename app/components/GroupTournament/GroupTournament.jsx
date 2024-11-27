@@ -1,5 +1,6 @@
 import "./GroupTournament.css";
 import Details from "../Details/Details";
+import Link from "next/link";
 
 export default function GroupTournament({ tournament }) {
     return (
@@ -9,9 +10,9 @@ export default function GroupTournament({ tournament }) {
                 tournament.city,
                 tournament.date
             ]} />
-            <div className="group-tournament-name">
+            <Link href={`/tournament/${tournament.id}`} className="group-tournament-name">
                 {tournament.name}
-            </div>
+            </Link>
         </div>
     );
 };

@@ -7,12 +7,13 @@ import Modal from "./components/Modal/Modal";
 import ModalProvider from "./context/ModalContext";
 import { Analytics } from "@vercel/analytics/react";
 import PlayerProvider from "./context/PlayerContext";
+import FavTournamentsProvider from "./context/FavTournamentsContext";
 import RatingCalculatorProvider from "./context/RatingCalculatorContext";
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "Omniclone",
+  title: "OMNICLONE",
   description: "All USATT and OmniPong data in one portal.",
 };
 
@@ -23,12 +24,14 @@ export default function RootLayout({ children }) {
         <PlayerProvider>
           <ModalProvider>
             <RatingCalculatorProvider>
-              <Script src="https://kit.fontawesome.com/09c2dac4bc.js" crossOrigin="anonymous" />
-              <Modal />
-              <Logo />
-              <Menu />
-              {children}
-              <Analytics />
+              <FavTournamentsProvider>
+                <Script src="https://kit.fontawesome.com/09c2dac4bc.js" crossOrigin="anonymous" />
+                <Modal />
+                <Logo />
+                <Menu />
+                {children}
+                <Analytics />
+              </FavTournamentsProvider>
             </RatingCalculatorProvider>
           </ModalProvider>
         </PlayerProvider>
