@@ -38,11 +38,6 @@ export default function PlayerWidget() {
                             {player.ratingDifference}
                         </span>
                     </div>
-                    <div className="player-widget-previous-tournament">
-                        <span>From: {player.lastTournamentPlayedRating}</span>
-                        <span>{player.lastTournamentPlayedDate}</span>
-                        <span>{player.lastTournamentPlayedName}</span>
-                    </div>
                 </div>
             </div>
         );
