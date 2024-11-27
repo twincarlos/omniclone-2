@@ -1,0 +1,13 @@
+.draw {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    overflow-y: scroll;
+    gap: 20px;
+}
+
+.draw-match {
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+}

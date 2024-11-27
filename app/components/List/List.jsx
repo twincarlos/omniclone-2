@@ -2,11 +2,11 @@
 import "./List.css";
 import { useState } from "react";
 
-export default function List({ children, max, indexed }) {
+export default function List({ children, max, indexed, reverseStyle }) {
     const [viewMore, setViewMore] = useState(false);
     return (
         <div className="list-container">
-            <div className="list">
+            <div className={`list ${reverseStyle ? "reversed" : ""}`}>
                 {
                     children.map((child, idx) => ((max && idx < max ) || !max || viewMore) && (<div key={idx} className="list-item padding">{child}{indexed && <span className="index">{idx + 1}</span>}</div>))
                 }

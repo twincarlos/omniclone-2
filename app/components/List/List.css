@@ -30,9 +30,14 @@
 .list-item:nth-child(odd) {
     background: var(--list-odd-background);
 }
-
 .list-item:nth-child(even) {
     background: var(--list-even-background);
+}
+.reversed .list-item:nth-child(odd) {
+    background: var(--list-even-background);
+}
+.reversed .list-item:nth-child(even) {
+    background: var(--list-odd-background);
 }
 
 .index {

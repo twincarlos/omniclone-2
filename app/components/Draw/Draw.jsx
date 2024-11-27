@@ -1,4 +1,7 @@
 import "./Draw.css";
+import { generateDraw } from "./generateDraw";
+import Player from "../Player/Player";
+import List from "../List/List";
 
 export default function Draw({ players }) {
     function groupPlayers(players) {
@@ -9,34 +12,52 @@ export default function Draw({ players }) {
         const totalPlayers = players.length;
         const numGroups = Math.ceil(totalPlayers / 4);
 
-        // Initialize groups array
-        const groups = Array.from({ length: numGroups }, () => []);
-
         // Step 3: Distribute players using the "snake" pattern
         let direction = 1; // 1 for forward, -1 for backward
         let groupIndex = 0;
+        let round = 1;
 
-        players.forEach(player => {
-            groups[groupIndex].push(player);
+        const firstSeeds = [];
+        const secondSeeds = [];
 
-            // Move the groupIndex in the current direction
+        for (const player of players) {
+            if (round === 1) {
+                firstSeeds.push(player);
+            } else if (round === 2) {
+                secondSeeds.push(player);
+            } else {
+                break;
+            };
+
             groupIndex += direction;
 
             // Reverse direction if we reach the end or start of the groups
             if (groupIndex === numGroups || groupIndex === -1) {
                 direction *= -1;
                 groupIndex += direction;
+                round++;
             }
-        });
+        };
 
-        // Step 4: Return the groups
-        return groups;
+        return [...firstSeeds, ...secondSeeds];
     };
-
-    const groups = groupPlayers(players);
+    const groupedPlayers = groupPlayers(players);
+    const { round, draw } = generateDraw(groupedPlayers);
     return (
-        <div>
-            
+        <div className="draw-container">
+            <span>{round}</span>
+            <div className="draw">
+                {
+                    draw.map((match, idx) => (
+                        <div className="draw-match" key={idx}>
+                            <List reverseStyle={idx % 2 === 0}>
+                                { match[0] ? <Player key={1} player={match[0]} /> : <span key={2}>BYE</span> }
+                                { match[1] ? <Player key={3} player={match[1]} /> : <span key={4}>BYE</span> }
+                            </List>
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     );
 };
