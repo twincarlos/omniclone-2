@@ -1,5 +1,6 @@
 "use client";
 import "./Tournament.css";
+import Loading from "@/app/components/Loading/Loading";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Tabs from "@/app/components/Tabs/Tabs";
@@ -76,7 +77,7 @@ export default function Tournament() {
         fetchTournament();
     }, []);
 
-    if (!tournament) return <p>Loading...</p>;
+    if (!tournament) return <Loading />;
 
     return (
         <main>

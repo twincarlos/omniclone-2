@@ -1,6 +1,6 @@
 :root {
   --background: linear-gradient(#153470, #040d2e);
-  --foreground: #ededed;
+  --foreground: #e4e1da;
   --list-odd-background: #0a153d;
   --list-even-background: #051f50;
   --gradient-border-color: linear-gradient(to right, transparent 0%, #1466ff 100%) 1;
@@ -9,7 +9,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: linear-gradient(#153470, #040d2e);
-    --foreground: #ededed;
+    --foreground: #e4e1da;
     
     --list-odd-background: #0a153d;
     --list-even-background: #051f50;
@@ -20,8 +20,8 @@
     --input-background: #132566;
     
     --primary-button-background: #1466ff;
-    --primary-button-color: #ededed;
-    --secondary-button-background: #ededed;
+    --primary-button-color: #e4e1da;
+    --secondary-button-background: #e4e1da;
     --secondary-button-color: #051f50;
 
     --gradient-background: linear-gradient(to right, #0a184d, #040d2e);
@@ -41,7 +41,6 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -54,7 +53,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--foreground);
   text-decoration: none;
 }
 

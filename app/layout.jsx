@@ -1,11 +1,14 @@
 import "./globals.css";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import Logo from "./components/Logo/Logo";
 import Menu from "./components/Menu/Menu";
 import Modal from "./components/Modal/Modal";
 import ModalProvider from "./context/ModalContext";
 import PlayerProvider from "./context/PlayerContext";
 import RatingCalculatorProvider from "./context/RatingCalculatorContext";
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: "Omniclone",
@@ -15,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <PlayerProvider>
           <ModalProvider>
             <RatingCalculatorProvider>

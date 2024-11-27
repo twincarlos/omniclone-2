@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import Link from "next/link";
 import Card from "./components/Card/Card";
+import { useState, useEffect } from "react";
 import Section from "./components/Section/Section";
+import Loading from "./components/Loading/Loading";
 import Gallery from "./components/Gallery/Gallery";
 import GroupTournament from "./components/GroupTournament/GroupTournament";
-import Link from "next/link";
 
 export default function Home() {
   const [groups, setGroups] = useState([]);
@@ -19,6 +20,8 @@ export default function Home() {
   useEffect(() => {
     fetchGroups();
   }, []);
+
+  if (groups.length === 0) return <Loading />;
 
   return (
     <main>
