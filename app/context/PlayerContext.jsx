@@ -18,6 +18,7 @@ const PlayerProvider = ({ children }) => {
 
     function removePlayerId() {
         localStorage.removeItem("playerId");
+        setPlayerId(null);
     };
 
     return (
