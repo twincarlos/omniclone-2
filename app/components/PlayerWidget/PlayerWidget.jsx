@@ -35,9 +35,9 @@ export default function PlayerWidget() {
                         <span className="player-widget-current-rating">
                             {player.currentRating}
                         </span>
-                        <span className={`player-widget-previous-rating ${player.ratingDifference > 0 ? "went-up" : "went-down"}`}>
+                        {/* <span className={`player-widget-previous-rating ${player.ratingDifference > 0 ? "went-up" : "went-down"}`}>
                             {player.ratingDifference}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             </div>
