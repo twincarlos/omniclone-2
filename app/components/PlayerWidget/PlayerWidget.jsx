@@ -1,6 +1,5 @@
 "use client";
 import "./PlayerWidget.css";
-import { useEffect, useState } from "react";
 import { useModal } from "@/app/context/ModalContext";
 import { usePlayer } from "@/app/context/PlayerContext";
 import { useRatingCalculator } from "@/app/context/RatingCalculatorContext";
@@ -8,28 +7,13 @@ import PlayerLookup from "../PlayerLookup/PlayerLookup";
 
 export default function PlayerWidget() {
     const { setContent } = useModal();
-    const { playerId, savePlayerId, removePlayerId } = usePlayer();
+    const { player, savePlayer, removePlayer } = usePlayer();
     const { updateMyRating } = useRatingCalculator();
-    const [player, setPlayer] = useState(null);
-
-    async function fetchPlayer() {
-        if (playerId) {
-            const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-profile/${playerId}`);
-            const data = await res.json();
-            setPlayer(data);
-        } else {
-            setPlayer(null);
-        };
-    };
-
-    useEffect(() => {
-        fetchPlayer();
-    }, [playerId]);
 
     if (player) {
         return (
             <div className="player-widget">
-                    <button onClick={removePlayerId} style={{ fontSize: 16 }}><i className="fa-regular fa-circle-xmark" /></button>
+                    <button onClick={removePlayer} style={{ fontSize: 16 }}><i className="fa-regular fa-circle-xmark" /></button>
                 <img className="player-widget-img" alt="player-img" src={player.img} />
                 <div className="player-widget-details">
                     <span>{player.name}</span>
@@ -49,7 +33,7 @@ export default function PlayerWidget() {
     return (
         <button onClick={() => {
             setContent(<PlayerLookup onClick={player => {
-                savePlayerId(player.id);
+                savePlayer(player.id);
                 updateMyRating(player.rating);
                 setContent(null);
             }} />);

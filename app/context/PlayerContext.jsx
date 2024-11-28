@@ -4,25 +4,35 @@ import { createContext, useState, useContext, useEffect } from 'react';
 const PlayerContext = createContext();
 
 const PlayerProvider = ({ children }) => {
-    const [playerId, setPlayerId] = useState(null);
+    const [player, setPlayer] = useState(null);
+
+    async function fetchPlayer(playerId) {
+        if (playerId) {
+            const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-profile/${JSON.parse(playerId)}`);
+            const data = await res.json();
+            setPlayer(data);
+        } else {
+            setPlayer(null);
+        };
+    };
 
     useEffect(() => {
         const savedPlayerId = localStorage.getItem("playerId");
-        if (savePlayerId) setPlayerId(JSON.parse(savedPlayerId));
+        fetchPlayer(savedPlayerId);
     }, []);
 
-    function savePlayerId(newPlayerId) {
+    function savePlayer(newPlayerId) {
         localStorage.setItem("playerId", JSON.stringify(newPlayerId));
-        setPlayerId(newPlayerId);
+        fetchPlayer(newPlayerId);
     };
 
-    function removePlayerId() {
+    function removePlayer() {
         localStorage.removeItem("playerId");
-        setPlayerId(null);
+        fetchPlayer(null);
     };
 
     return (
-        <PlayerContext.Provider value={{ playerId, savePlayerId, removePlayerId }}>
+        <PlayerContext.Provider value={{ player, savePlayer, removePlayer }}>
             {children}
         </PlayerContext.Provider>
     );
