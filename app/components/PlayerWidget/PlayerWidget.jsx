@@ -8,7 +8,7 @@ import PlayerLookup from "../PlayerLookup/PlayerLookup";
 
 export default function PlayerWidget() {
     const { setContent } = useModal();
-    const { playerId, savePlayerId } = usePlayer();
+    const { playerId, savePlayerId, removePlayerId } = usePlayer();
     const { updateMyRating } = useRatingCalculator();
     const [player, setPlayer] = useState(null);
 
@@ -27,6 +27,7 @@ export default function PlayerWidget() {
     if (player) {
         return (
             <div className="player-widget">
+                    <button onClick={removePlayerId} style={{ fontSize: 16 }}><i className="fa-regular fa-circle-xmark" /></button>
                 <img className="player-widget-img" alt="player-img" src={player.img} />
                 <div className="player-widget-details">
                     <span>{player.name}</span>

@@ -16,8 +16,12 @@ const PlayerProvider = ({ children }) => {
         setPlayerId(newPlayerId);
     };
 
+    function removePlayerId() {
+        localStorage.removeItem("playerId");
+    };
+
     return (
-        <PlayerContext.Provider value={{ playerId, savePlayerId }}>
+        <PlayerContext.Provider value={{ playerId, savePlayerId, removePlayerId }}>
             {children}
         </PlayerContext.Provider>
     );
