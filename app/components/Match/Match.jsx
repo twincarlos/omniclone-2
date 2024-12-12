@@ -1,7 +1,8 @@
 import "./Match.css";
 import Details from "../Details/Details";
+import Link from "next/link";
 
-export default function Match({ match }) {
+export default function Match({ match, hrefs }) {
     return (
         <div className="match">
             <Details
@@ -13,7 +14,11 @@ export default function Match({ match }) {
             />
             <div className="match-body">
                 <div className="match-player match-winner">
-                    <span className="margin-top-bottom match-player-name"><i className="fa-solid fa-trophy" /> {match.winner.name}</span>
+                    {
+                        hrefs ?
+                        <Link href={hrefs.winner} className="margin-top-bottom match-player-name"><i className="fa-solid fa-trophy" /> {match.winner.name} <span className="player-rating">{match.winner.rating}</span></Link> :
+                        <div className="margin-top-bottom match-player-name"><i className="fa-solid fa-trophy" /> {match.winner.name} <span className="player-rating">{match.winner.rating}</span></div>
+                    }
                     <div className="match-scores">
                         {
                             match.winner.scores.map((score, idx) => (
@@ -30,7 +35,12 @@ export default function Match({ match }) {
                             ))
                         }
                     </div>
-                    <span className="margin-top-bottom match-player-name">{match.loser.name}</span>
+                    {
+                        hrefs ?
+                        <Link href={hrefs.loser} className="margin-top-bottom match-player-name">{match.loser.name} <span className="player-rating">{match.loser.rating}</span></Link> :
+                        <span className="margin-top-bottom match-player-name">{match.loser.name} <span className="player-rating">{match.loser.rating}</span></span>
+                        
+                    }
                 </div>
             </div>
         </div>

@@ -5,9 +5,12 @@ import Loading from "@/app/components/Loading/Loading";
 import Gallery from "@/app/components/Gallery/Gallery";
 import Match from "@/app/components/Match/Match";
 import Card from "@/app/components/Card/Card";
+import Player from "@/app/components/Player/Player";
 
 export default function PlayerPerformance() {
     const [data, setData] = useState(null);
+    const [showMatches, setShowMatches] = useState(false);
+    const [keyword, setKeyword] = useState("");
     const { tournamentId, playerId } = useParams();
 
     async function fetchPlayerPerformance() {
@@ -22,7 +25,7 @@ export default function PlayerPerformance() {
 
     if (!data) return <Loading />;
 
-    const { player, tournament, matches } = data;
+    const { player, tournament, matches, stats } = data;
 
     return (
         <main>
@@ -43,13 +46,78 @@ export default function PlayerPerformance() {
                     </div>
                 </Card>
             </div>
+            <div className="margin-top-bottom">
+                <h1>Stats</h1>
+                <Gallery>
+                    <div>
+                        <span>Best win</span>
+                        <Card styleClass={"winner"}>
+                            <Match hrefs={{
+                                winner: `/player-performance/${tournamentId}/${stats.bestWin.winner.id}`,
+                                loser: `/player-performance/${tournamentId}/${stats.bestWin.loser.id}`
+                            }} match={stats.bestWin} />
+                        </Card>
+                    </div>
+                    <div>
+                        <span>Worst loss</span>
+                        <Card styleClass={"loser"}>
+                            <Match hrefs={{
+                                winner: `/player-performance/${tournamentId}/${stats.worstLoss.winner.id}`,
+                                loser: `/player-performance/${tournamentId}/${stats.worstLoss.loser.id}`
+                            }} match={stats.worstLoss} />
+                        </Card>
+                    </div>
+                    <div>
+                        <span>Closest match</span>
+                        <Card styleClass={stats.closestMatch.match.winner.id == playerId ? "winner" : "loser"}>
+                            <Match hrefs={{
+                                winner: `/player-performance/${tournamentId}/${stats.closestMatch.match.winner.id}`,
+                                loser: `/player-performance/${tournamentId}/${stats.closestMatch.match.loser.id}`
+                            }} match={stats.closestMatch.match} />
+                        </Card>
+                    </div>
+                    <div>
+                        <span>Most frequent player</span>
+                        <Card>
+                            <div>
+                                <Player player={stats.mostFrequentPlayer.player} />
+                                <span><b>W:</b> {stats.mostFrequentPlayer.wins} - <b>L:</b> {stats.mostFrequentPlayer.losses}</span>
+                            </div>
+                            <button onClick={() => setShowMatches(!showMatches)}><i className={`fa-regular fa-eye${showMatches ? "-slash" : ""}`} /> {showMatches ? "Hide" : "Show"} matches</button>
+                            <div className="margin-top-bottom">
+                                {showMatches && stats.mostFrequentPlayer.matches.map((match, idx) => <Card key={idx} styleClass={match.winner.id == playerId ? "winner" : "loser"}><Match hrefs={{
+                                    winner: `/player-performance/${tournamentId}/${match.winner.id}`,
+                                    loser: `/player-performance/${tournamentId}/${match.loser.id}`
+                                }} match={match} /></Card>)}
+                            </div>
+                        </Card>
+                    </div>
+                </Gallery>
+            </div>
             <div>
+                <h1>Matches</h1>
+                <input className="search-bar margin-top-bottom" type="text" placeholder="Search matches" value={keyword} onChange={e => setKeyword(e.target.value)} />
                 {
                     <Gallery>
                         {
-                            matches.map((match, idx) => (
+                            matches.filter(match => {
+                                if (keyword) {
+                                    if (match.eventName.toLowerCase().includes(keyword.toLowerCase())) return true;
+                                    if (match.winner.id == playerId) {
+                                        if (match.loser.name.toLowerCase().includes(keyword.toLowerCase())) return true;
+                                    } else {
+                                        if (match.winner.name.toLowerCase().includes(keyword.toLowerCase())) return true;
+                                    };
+                                    return false;
+                                } else {
+                                    return true;
+                                };
+                            }).map((match, idx) => (
                                 <Card styleClass={match.winner.id == playerId ? "winner" : "loser"} key={idx}>
-                                    <Match match={match} />
+                                    <Match hrefs={{
+                                        winner: `/player-performance/${tournamentId}/${match.winner.id}`,
+                                        loser: `/player-performance/${tournamentId}/${match.loser.id}`
+                                    }} match={match} />
                                 </Card>
                             ))
                         }

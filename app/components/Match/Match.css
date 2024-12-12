@@ -43,3 +43,8 @@
 .match-score.loser-score {
     opacity: .25;
 }
+
+.player-rating {
+    font-weight: 200;
+    font-size: 12px;
+}
