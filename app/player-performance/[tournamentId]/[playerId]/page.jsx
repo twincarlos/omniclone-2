@@ -76,22 +76,26 @@ export default function PlayerPerformance() {
                             }} match={stats.closestMatch.match} />
                         </Card>
                     </div>
-                    <div>
-                        <span>Most frequent player</span>
-                        <Card>
+                    {
+                        stats.mostFrequentPlayer && (
                             <div>
-                                <Player player={stats.mostFrequentPlayer.player} />
-                                <span><b>W:</b> {stats.mostFrequentPlayer.wins} - <b>L:</b> {stats.mostFrequentPlayer.losses}</span>
+                                <span>Most frequent player</span>
+                                <Card>
+                                    <div>
+                                        <Player player={stats.mostFrequentPlayer.player} />
+                                        <span><b>W:</b> {stats.mostFrequentPlayer.wins} - <b>L:</b> {stats.mostFrequentPlayer.losses}</span>
+                                    </div>
+                                    <button onClick={() => setShowMatches(!showMatches)}><i className={`fa-regular fa-eye${showMatches ? "-slash" : ""}`} /> {showMatches ? "Hide" : "Show"} matches</button>
+                                    <div className="margin-top-bottom">
+                                        {showMatches && stats.mostFrequentPlayer.matches.map((match, idx) => <Card key={idx} styleClass={match.winner.id == playerId ? "winner" : "loser"}><Match hrefs={{
+                                            winner: `/player-performance/${tournamentId}/${match.winner.id}`,
+                                            loser: `/player-performance/${tournamentId}/${match.loser.id}`
+                                        }} match={match} /></Card>)}
+                                    </div>
+                                </Card>
                             </div>
-                            <button onClick={() => setShowMatches(!showMatches)}><i className={`fa-regular fa-eye${showMatches ? "-slash" : ""}`} /> {showMatches ? "Hide" : "Show"} matches</button>
-                            <div className="margin-top-bottom">
-                                {showMatches && stats.mostFrequentPlayer.matches.map((match, idx) => <Card key={idx} styleClass={match.winner.id == playerId ? "winner" : "loser"}><Match hrefs={{
-                                    winner: `/player-performance/${tournamentId}/${match.winner.id}`,
-                                    loser: `/player-performance/${tournamentId}/${match.loser.id}`
-                                }} match={match} /></Card>)}
-                            </div>
-                        </Card>
-                    </div>
+                        )
+                    }
                 </Gallery>
             </div>
             <div>
