@@ -15,7 +15,7 @@
     width: 90%;
     max-width: 500px;
     padding: 20px 0;
-    z-index: 1;
+    z-index: 2;
 }
 
 .rating-calculator-widget > button {

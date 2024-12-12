@@ -23,6 +23,7 @@
     box-shadow: #1c3bb1 1px 1px 100px;
     border-radius: 5px;
     border: 1px solid #1c3bb1;
+    z-index: 1;
 }
 
 .menu-dropdown .list-item a {
