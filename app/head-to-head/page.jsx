@@ -22,46 +22,48 @@ export default function HeadToHead() {
     };
     return (
         <main className="head-to-head">
-            <Card>
-                <div className="head-to-head-players">
-                    <div className="head-to-head-player">
-                        <button onClick={() => setContent(<PlayerLookup onClick={async player => {
-                            setPlayers({ ...players, p1: player });
-                            if (players.p2) fetchHeadToHeadData(player.id, players.p2.id);
-                            setContent(null);
-                        }} />)} className="primary">
-                            <i className="fa-regular fa-user" /> Player 1
-                        </button>
-                        {players.p1 && <Player player={players.p1} />}
-                    </div>
-                    <div className="head-to-head-player">
-                        <button onClick={() => setContent(<PlayerLookup onClick={player => {
-                            setPlayers({ ...players, p2: player });
-                            if (players.p1) fetchHeadToHeadData(players.p1.id, player.id);
-                            setContent(null);
-                        }} />)} className="primary">
-                            <i className="fa-regular fa-user" /> Player 2
-                        </button>
-                        {players.p2 && <Player player={players.p2} />}
-                    </div>
-                </div>
-                {
-                    headToHeadData && (
-                        <div className="margin-top-bottom head-to-head-score">
-                            <span>{headToHeadData.p1.wins}</span>
-                            -
-                            <span>{headToHeadData.p2.wins}</span>
+            <div className="margin-top-bottom">
+                <Card>
+                    <div className="head-to-head-players">
+                        <div className="head-to-head-player">
+                            <button onClick={() => setContent(<PlayerLookup onClick={async player => {
+                                setPlayers({ ...players, p1: player });
+                                if (players.p2) fetchHeadToHeadData(player.id, players.p2.id);
+                                setContent(null);
+                            }} />)} className="primary">
+                                <i className="fa-regular fa-user" /> Player 1
+                            </button>
+                            {players.p1 && <Player player={players.p1} />}
                         </div>
-                    )
-                }
-            </Card>
+                        <div className="head-to-head-player">
+                            <button onClick={() => setContent(<PlayerLookup onClick={player => {
+                                setPlayers({ ...players, p2: player });
+                                if (players.p1) fetchHeadToHeadData(players.p1.id, player.id);
+                                setContent(null);
+                            }} />)} className="primary">
+                                <i className="fa-regular fa-user" /> Player 2
+                            </button>
+                            {players.p2 && <Player player={players.p2} />}
+                        </div>
+                    </div>
+                    {
+                        headToHeadData && (
+                            <div className="margin-top-bottom head-to-head-score">
+                                <span>{headToHeadData.p1.wins}</span>
+                                -
+                                <span>{headToHeadData.p2.wins}</span>
+                            </div>
+                        )
+                    }
+                </Card>
+            </div>
             {
                 headToHeadData && (
                     <Gallery>
                         {
                             headToHeadData.matches.map((match, idx) => (
                                 <Card key={idx}>
-                                    <Match  match={match} />
+                                    <Match match={match} />
                                 </Card>
                             ))
                         }

@@ -1,8 +1,8 @@
 import "./Card.css";
 
-export default function Card({ children }) {
+export default function Card({ children, styleClass }) {
     return (
-        <div className="card">
+        <div className={`card ${styleClass || ""}`}>
             {children}
         </div>
     );

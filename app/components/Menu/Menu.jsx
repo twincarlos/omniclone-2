@@ -19,6 +19,7 @@ export default function Menu() {
                 {
                     showMenu && (
                         <List>
+                            <Link onClick={() => setShowMenu(false)} className="padding" href="/player-profile">Player profile <i className="fa-regular fa-user" /></Link>
                             <Link onClick={() => setShowMenu(false)} className="padding" href="/rating-calculator">Rating calculator <i className="fa-solid fa-square-root-variable" /></Link>
                             <Link onClick={() => setShowMenu(false)} className="padding" href="/head-to-head">Head to head <i className="fa-solid fa-scale-unbalanced-flip" /></Link>
                         </List>

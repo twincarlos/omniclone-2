@@ -5,3 +5,11 @@
     border-image: var(--gradient-border-color);
     border-style: solid;
 }
+
+.card.winner {
+    border-image: linear-gradient(to right, transparent 0%, #37ff14a5 100%) 1;
+}
+
+.card.loser {
+    border-image: linear-gradient(to right, transparent 0%, #ff9514b1 100%) 1;
+}

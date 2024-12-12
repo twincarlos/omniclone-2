@@ -7,7 +7,6 @@ import NoData from "../NoData/NoData";
 import Loading from "../Loading/Loading";
 import { debounce } from "lodash";
 
-
 export default function PlayerLookup({ onClick }) {
     const [players, setPlayers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
