@@ -49,24 +49,30 @@ export default function PlayerPerformance() {
             <div className="margin-top-bottom">
                 <h1>Stats</h1>
                 <Gallery>
-                    <div>
-                        <span>Best win</span>
-                        <Card styleClass={"winner"}>
-                            <Match hrefs={{
-                                winner: `/player-performance/${tournamentId}/${stats.bestWin.winner.id}`,
-                                loser: `/player-performance/${tournamentId}/${stats.bestWin.loser.id}`
-                            }} match={stats.bestWin} />
-                        </Card>
-                    </div>
-                    <div>
-                        <span>Worst loss</span>
-                        <Card styleClass={"loser"}>
-                            <Match hrefs={{
-                                winner: `/player-performance/${tournamentId}/${stats.worstLoss.winner.id}`,
-                                loser: `/player-performance/${tournamentId}/${stats.worstLoss.loser.id}`
-                            }} match={stats.worstLoss} />
-                        </Card>
-                    </div>
+                    {
+                        stats.bestWin &&
+                        <div>
+                            <span>Best win</span>
+                            <Card styleClass={"winner"}>
+                                <Match hrefs={{
+                                    winner: `/player-performance/${tournamentId}/${stats.bestWin.winner.id}`,
+                                    loser: `/player-performance/${tournamentId}/${stats.bestWin.loser.id}`
+                                }} match={stats.bestWin} />
+                            </Card>
+                        </div>
+                    }
+                    {
+                        stats.worstLoss &&
+                        <div>
+                            <span>Worst loss</span>
+                            <Card styleClass={"loser"}>
+                                <Match hrefs={{
+                                    winner: `/player-performance/${tournamentId}/${stats.worstLoss.winner.id}`,
+                                    loser: `/player-performance/${tournamentId}/${stats.worstLoss.loser.id}`
+                                }} match={stats.worstLoss} />
+                            </Card>
+                        </div>
+                    }
                     <div>
                         <span>Closest match</span>
                         <Card styleClass={stats.closestMatch.match.winner.id == playerId ? "winner" : "loser"}>
