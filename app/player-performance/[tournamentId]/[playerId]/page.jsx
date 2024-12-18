@@ -6,6 +6,7 @@ import Gallery from "@/app/components/Gallery/Gallery";
 import Match from "@/app/components/Match/Match";
 import Card from "@/app/components/Card/Card";
 import Player from "@/app/components/Player/Player";
+import CustomBarChart from "@/app/components/CustomBarChart/CustomBarChart";
 
 export default function PlayerPerformance() {
     const [data, setData] = useState(null);
@@ -46,6 +47,7 @@ export default function PlayerPerformance() {
                     </div>
                 </Card>
             </div>
+            <CustomBarChart />
             <div className="margin-top-bottom">
                 <h1>Stats</h1>
                 <Gallery>
