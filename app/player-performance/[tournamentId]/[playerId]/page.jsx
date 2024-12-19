@@ -6,7 +6,7 @@ import Gallery from "@/app/components/Gallery/Gallery";
 import Match from "@/app/components/Match/Match";
 import Card from "@/app/components/Card/Card";
 import Player from "@/app/components/Player/Player";
-import CustomBarChart from "@/app/components/CustomBarChart/CustomBarChart";
+import Stats from "@/app/components/Stats/Stats";
 
 export default function PlayerPerformance() {
     const [data, setData] = useState(null);
@@ -47,7 +47,23 @@ export default function PlayerPerformance() {
                     </div>
                 </Card>
             </div>
-            <CustomBarChart />
+            <Stats data={[
+                {
+                    data: [{ value: stats.matchesWon }, { value: stats.matchesLost }],
+                    name: "Matches W/L",
+                    colors: ["green", "red"]
+                },
+                {
+                    data: [{ value: stats.gamesWon }, { value: stats.gamesLost }],
+                    name: "Games W/L",
+                    colors: ["green", "red"]
+                },
+                {
+                    data: [{ value: stats.pointsWon }, { value: stats.pointsLost }],
+                    name: "Points W/L",
+                    colors: ["green", "red"]
+                }
+            ]} />
             <div className="margin-top-bottom">
                 <h1>Stats</h1>
                 <Gallery>
