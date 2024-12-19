@@ -14,7 +14,7 @@ export default function Stats({ data }) {
         <div className="pie-row">
           {data.map((obj, index) => (
             <div key={index} className="pie-wrap">
-              <div style={{ width: 200, height: 200 }}>
+              <div style={{ width: 200, height: 300 }}>
                 <ResponsiveContainer>
                   <PieChart>
                     <Pie
@@ -22,7 +22,7 @@ export default function Stats({ data }) {
                       innerRadius={60}
                       outerRadius={80}
                       dataKey="value"
-                      label
+                      label={obj.label}
                     >
                       {obj.colors.map((color, index) => <Cell key={index} fill={color} />)}
                       <Label value={obj.name} position="center" />

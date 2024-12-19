@@ -47,25 +47,34 @@ export default function PlayerPerformance() {
                     </div>
                 </Card>
             </div>
-            <Stats data={[
-                {
-                    data: [{ value: stats.matchesWon }, { value: stats.matchesLost }],
-                    name: "Matches W/L",
-                    colors: ["green", "red"]
-                },
-                {
-                    data: [{ value: stats.gamesWon }, { value: stats.gamesLost }],
-                    name: "Games W/L",
-                    colors: ["green", "red"]
-                },
-                {
-                    data: [{ value: stats.pointsWon }, { value: stats.pointsLost }],
-                    name: "Points W/L",
-                    colors: ["green", "red"]
-                }
-            ]} />
             <div className="margin-top-bottom">
                 <h1>Stats</h1>
+                <Stats data={[
+                    {
+                        data: [{ value: stats.matchesWon }, { value: stats.matchesLost }],
+                        name: "Matches W/L",
+                        colors: ["green", "red"],
+                        label: true
+                    },
+                    {
+                        data: [{ value: stats.gamesWon }, { value: stats.gamesLost }],
+                        name: "Games W/L",
+                        colors: ["green", "red"],
+                        label: true
+                    },
+                    {
+                        data: [{ value: stats.pointsWon }, { value: stats.pointsLost }],
+                        name: "Points W/L",
+                        colors: ["green", "red"],
+                        label: true
+                    },
+                    {
+                        data: [{ value: stats.averageOpponentRating }],
+                        name: `Avg Opp Rating: ${stats.averageOpponentRating}`,
+                        colors: ["lightblue"],
+                        label: false
+                    }
+                ]} />
                 <Gallery>
                     {
                         stats.bestWin &&
