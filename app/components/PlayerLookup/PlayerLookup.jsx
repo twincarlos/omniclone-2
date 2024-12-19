@@ -15,8 +15,9 @@ export default function PlayerLookup({ onClick }) {
             if (keyword) {
                 setIsLoading(true);
                 const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-lookup/${keyword}`, {
-                    cache: "force-cache",
-                    next: { revalidate: 900 }
+                    headers: {
+                        'Cache-Control': 'max-age=60'
+                    },
                 });
                 const data = await res.json();
                 setPlayers(data);
