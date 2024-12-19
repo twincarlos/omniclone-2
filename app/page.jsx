@@ -17,7 +17,10 @@ export default function Home() {
   const { favTournaments, saveFavTournament, removeFavTournament } = useFavTournaments();
 
   async function fetchGroups() {
-    const res = await fetch("https://omniclone-api.vercel.app/api/omnipong/tournaments");
+    const res = await fetch("https://omniclone-api.vercel.app/api/omnipong/tournaments", {
+      cache: "force-cache",
+      next: { revalidate: 900 }
+  });
     const data = await res.json();
     setGroups(data);
   };

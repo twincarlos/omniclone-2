@@ -16,7 +16,10 @@ export default function HeadToHead() {
     });
     const [headToHeadData, setHeadToHeadData] = useState(null);
     async function fetchHeadToHeadData(p1Id, p2Id) {
-        const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/head-to-head/${p1Id}-${p2Id}`);
+        const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/head-to-head/${p1Id}-${p2Id}`, {
+            cache: "force-cache",
+            next: { revalidate: 900 }
+        });
         const data = await res.json();
         setHeadToHeadData(data);
     };

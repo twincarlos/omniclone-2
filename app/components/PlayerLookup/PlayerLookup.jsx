@@ -14,7 +14,10 @@ export default function PlayerLookup({ onClick }) {
         debounce(async keyword => {
             if (keyword) {
                 setIsLoading(true);
-                const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-lookup/${keyword}`, { cache: "force-cache" });
+                const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-lookup/${keyword}`, {
+                    cache: "force-cache",
+                    next: { revalidate: 900 }
+                });
                 const data = await res.json();
                 setPlayers(data);
                 setIsLoading(false);

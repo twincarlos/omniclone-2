@@ -14,7 +14,10 @@ export default function PlayerProfile() {
     const [data, setData] = useState(null);
 
     async function fetchPlayer() {
-        const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-tournaments/${id}`);
+        const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-tournaments/${id}`, {
+            cache: "force-cache",
+            next: { revalidate: 900 }
+        });
         const data = await res.json();
         setData(data);
     };
