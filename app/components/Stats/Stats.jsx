@@ -22,6 +22,7 @@ export default function Stats({ data }) {
                       innerRadius={60}
                       outerRadius={80}
                       dataKey="value"
+                      label
                     >
                       {obj.colors.map((color, index) => <Cell key={index} fill={color} />)}
                       <Label value={obj.name} position="center" />
