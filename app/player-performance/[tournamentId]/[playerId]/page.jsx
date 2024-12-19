@@ -15,10 +15,7 @@ export default function PlayerPerformance() {
     const { tournamentId, playerId } = useParams();
 
     async function fetchPlayerPerformance() {
-        const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-performance/${tournamentId}-${playerId}`, {
-            cache: "force-cache",
-            next: { revalidate: 900 }
-        });
+        const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-performance/${tournamentId}-${playerId}`);
         const data = await res.json();
         setData(data);
     };

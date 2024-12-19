@@ -8,10 +8,7 @@ const PlayerProvider = ({ children }) => {
 
     async function fetchPlayer(playerId) {
         if (playerId) {
-            const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-profile/${JSON.parse(playerId)}`, {
-                cache: "force-cache",
-                next: { revalidate: 900 }
-            });
+            const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-profile/${JSON.parse(playerId)}`);
             const data = await res.json();
             setPlayer(data);
         } else {

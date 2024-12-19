@@ -26,10 +26,7 @@ export default function Tournament() {
     const [enableRatingCalculator, setEnableRatingCalculator] = useState(false);
 
     async function fetchTournament() {
-        const res = await fetch(`https://omniclone-api.vercel.app/api/omnipong/tournament/${id}`, {
-            cache: "force-cache",
-            next: { revalidate: 900 }
-        });
+        const res = await fetch(`https://omniclone-api.vercel.app/api/omnipong/tournament/${id}`);
         const data = await res.json();
         setTournament(data);
     };
