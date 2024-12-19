@@ -1,7 +1,7 @@
 "use client";
 import "./PlayerLookup.css";
 import List from "../List/List";
-import { useState, useCallback } from "react";
+import { useState, useCallback, cache } from "react";
 import Player from "../Player/Player";
 import NoData from "../NoData/NoData";
 import Loading from "../Loading/Loading";
@@ -14,7 +14,7 @@ export default function PlayerLookup({ onClick }) {
         debounce(async keyword => {
             if (keyword) {
                 setIsLoading(true);
-                const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-lookup/${keyword}`);
+                const res = await fetch(`https://omniclone-api.vercel.app/api/usatt/player-lookup/${keyword}`, { cache: "force-cache" });
                 const data = await res.json();
                 setPlayers(data);
                 setIsLoading(false);
