@@ -1,13 +1,12 @@
-import "./styles.css";
+import "./Stats.css";
 import { Cell, Label, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 export default function Stats({ data }) {
   return (
-    <div className="App">
+    <div>
       <div
         style={{
           width: "100%",
-          height: 212,
           overflowX: "scroll",
           overflowY: "hidden",
         }}
